@@ -109,20 +109,20 @@ This project addresses these issues by estimating the illumination component of 
 ---
 
 ## 📁 Project Structure
-Low-Light-Image-Enhancement/
-│
-├── demo.py # Main script to run enhancement
-├── exposure_enhancement.py # Core algorithms (LIME + DUAL)
-├── utils.py # Helper functions
-├── requirements.txt # Dependencies
-├── README.md # Project documentation
-│
-├── demo/ # Input images
-│ ├── low-light-indoors-winter-2.bmp
-│ │
-│ └── enhanced/ # Output images
-│ └── low-light-indoors-winter-2_DUAL_g0.6_l0.15.png
 
+    Low-Light-Image-Enhancement/
+    │
+    ├── demo.py                    # Main script to run enhancement
+    ├── exposure_enhancement.py   # Core algorithms (LIME + DUAL)
+    ├── utils.py                  # Helper functions
+    ├── requirements.txt          # Dependencies
+    ├── README.md                 # Project documentation
+    │
+    ├── demo/                     # Input images
+    │   ├── low-light-indoors-winter-2.bmp
+    │   │
+    │   └── enhanced/             # Output images
+    │       └── low-light-indoors-winter-2_DUAL_g0.6_l0.15.png
 
 ---
 
