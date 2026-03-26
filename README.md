@@ -155,4 +155,5 @@ Note
 This project was developed as part of a Computer Vision coursework to explore illumination modeling, optimization techniques, and image enhancement pipelines.
 
 ⭐ Author
-Aditya Telikicharla
+
+--Aditya Telikicharla
