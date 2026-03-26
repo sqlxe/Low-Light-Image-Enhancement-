@@ -60,14 +60,13 @@ This project addresses these issues by estimating the illumination component of 
   - Well-exposedness  
 
 ---
+
+
 ## 📊 Results
 
 | Before | After |
 |--------|-------|
-| ![](demo/low-light-indoors-winter-2.bmp) | ![](demo/enhanced/low-light-indoors-winter-2_DUAL_g0.6_l0.15-.bmp)
-sqlxe
-sqlxe
-Add files via upload) |
+| ![](demo/low-light-indoors-winter-2.bmp) | ![](demo/enhanced/low-light-indoors-winter-2_DUAL_g0.6_l0.15.bmp) |
 
 ## 🛠️ Tech Stack
 
