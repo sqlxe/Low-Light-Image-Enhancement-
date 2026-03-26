@@ -1,67 +1,102 @@
-# Low-light-Image-Enhancement
-Python implementation of two low-light image enhancement techniques via illumination map estimation, based on the following papers:
- * Dual Illumination Estimation for Robust Exposure Correction [[link](https://arxiv.org/pdf/1910.13688.pdf)]
- * LIME: Low-light Image Enhancement via Illumination Map Estimation [[link](https://ieeexplore.ieee.org/document/7782813)]
+🌙 Low-Light Image Enhancement using Retinex-Based Illumination Modeling
+📌 Overview
 
-Both methods are based on retinex modelling, and aim at estimating the illumination map by preserving the prominent structure of the image, while removing the redundant texture details. To do this, the same optimization formulation is used by both papers (see references). The novelty introduced by the first paper (called DUAL below) compared to the second (called LIME below) is the estimation of this map for the original image, and for its inverted version, which allows to correct both the under-exposed and over-exposed parts of the image.
+This project presents an implementation of low-light image enhancement techniques using illumination map estimation based on Retinex theory. The goal is to improve visibility in underexposed images while preserving structural details and avoiding noise amplification.
 
-The code implemented in this repository allows the use of both methods, which can be easily selected from the script parameters.
+The system integrates two widely recognized approaches:
 
-## Installation
-This implementation runs on python >= 3.7, use pip to install dependencies:
-```
-pip3 install -r requirements.txt
-```
+LIME (Low-Light Image Enhancement)
+DUAL Illumination Estimation
 
-## Usage
-Use the `demo.py` script to enhance your images.
-```
-usage: demo.py [-h] [-f FOLDER] [-g GAMMA] [-l LAMBDA_] [-ul] [-s SIGMA]
-               [-bc BC] [-bs BS] [-be BE] [-eps EPS]
+Unlike basic brightness adjustment methods, this approach models the physical formation of images and performs optimization-based enhancement, resulting in more natural and visually consistent outputs.
 
-Python implementation of two low-light image enhancement techniques via illumination map estimation.
+✨ Motivation
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -f FOLDER, --folder FOLDER
-                        folder path to test images.
-  -g GAMMA, --gamma GAMMA
-                        the gamma correction parameter.
-  -l LAMBDA_, --lambda_ LAMBDA_
-                        the weight for balancing the two terms in the illumination refinement optimization objective.
-  -ul, --lime           Use the LIME method. By default, the DUAL method is used.
-  -s SIGMA, --sigma SIGMA
-                        Spatial standard deviation for spatial affinity based Gaussian weights.
-  -bc BC                parameter for controlling the influence of Mertens's contrast measure.
-  -bs BS                parameter for controlling the influence of Mertens's saturation measure.
-  -be BE                parameter for controlling the influence of Mertens's well exposedness measure.
-  -eps EPS              constant to avoid computation instability.
-```
+Images captured in low-light conditions often suffer from:
 
-### Example
-```
-python3 demo.py -f ./demo/ -l 0.15 -g 0.6
-```
+Loss of detail
+Poor contrast
+Noise amplification after naive enhancement
 
-### Result
-Low Light Image             |  Enhanced Image
-:-------------------------:|:-------------------------:
-![](demo/2.bmp)  |  ![](demo/enhanced/2_DUAL_g0.6_l0.15.bmp)
+This project addresses these issues by estimating the illumination component of an image and refining it using edge-preserving optimization techniques.
 
-### TODO
- - [ ] Add a fourier based solver to speed up the inference
- 
- 
-### :mortar_board: Citation
-If you find this work useful in your research, please consider citing:
-```
-@misc{lowlightpython,
-  author = {Souhaib Attaiki},
-  title = {Low light Image Enhancement},
-  year = {2020},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/pvnieo/Low-light-Image-Enhancement}},
-}
+🚀 Features
+🔆 Enhances low-light images with realistic brightness
+🧠 Based on Retinex theory (illumination-reflectance decomposition)
+⚡ Supports both LIME and DUAL methods
+🎯 Preserves edges and suppresses noise
+📂 Batch image processing via command line
+🔧 Fully parameterized (gamma, lambda, sigma, etc.)
+🧠 Methodology
+1. Illumination Map Estimation
+Initial illumination is estimated using the maximum RGB channel
+Represents how light is distributed across the image
+2. Illumination Refinement
+Smoothness constraints applied using spatial affinity weights
+Solved using a sparse linear optimization system
+Preserves edges while removing noise
+3. Enhancement Techniques
+🔹 LIME
+Enhances underexposed regions using refined illumination map
+🔹 DUAL
+Processes both:
+Original image (underexposed regions)
+Inverted image (overexposed regions)
+Combines results using exposure fusion
+4. Exposure Fusion
+Uses perceptual metrics:
+Contrast
+Saturation
+Well-exposedness
+🛠️ Tech Stack
+👨‍💻 Language
+Python 3.7+
+📚 Libraries
+OpenCV (image processing & fusion)
+NumPy (numerical operations)
+SciPy (sparse matrix optimization)
+tqdm (progress tracking)
+📁 Project Structure
+├── demo.py                  # Main script for running enhancement
+├── exposure_enhancement.py # Core algorithms (LIME + DUAL)
+├── utils.py                # Helper functions (sparse neighbors)
+├── requirements.txt        # Dependencies
+├── demo/                   # Input images
+└── enhanced/               # Output results
+⚡ Installation
+pip install -r requirements.txt
+💻 Usage
+python demo.py -f ./demo/ -g 0.6 -l 0.15
+Optional Arguments
+--lime → Use LIME instead of DUAL
+--gamma → Controls brightness correction
+--lambda_ → Controls smoothness vs detail
+--sigma → Spatial smoothing parameter
+📊 Results
+Before	After
 
-```
+	
+🎯 Applications
+Surveillance and security systems
+Autonomous driving vision
+Medical imaging preprocessing
+Photography enhancement
+Night-time object detection
+🔮 Future Work
+🚀 GPU acceleration (CUDA / PyTorch)
+🎥 Real-time video enhancement
+⚡ Faster solvers (Fourier-based optimization)
+🤖 Deep learning hybrid models
+📚 References
+LIME: Low-Light Image Enhancement via Illumination Map Estimation
+Dual Illumination Estimation for Robust Exposure Correction
+⚠️ Note
+
+This project is implemented as part of a Computer Vision coursework to understand:
+
+Illumination modeling
+Optimization techniques
+Image enhancement pipelines
+⭐ Author
+
+Aditya Telikicharla
